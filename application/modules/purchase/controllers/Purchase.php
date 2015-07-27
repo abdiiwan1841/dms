@@ -7,12 +7,14 @@ class Purchase extends MY_Controller {
 	// ==================================== //
 	public function index()
 	{
+		$this->load->model('purchasemodel');
 		$data['contents'] = 'purchase/purchase';
 		$data['title'] = $this->title;
 		$this->breadcrumbs = array(
 			'title' => array('Dashboard','Pembelian & Penerimaan Titipan','Pembelian'),
 			'url' => array('/admin/dashboard','/admin/test', '/admin/test')
 			);
+		$data['data_purchase'] = $this->purchasemodel->getPurchase('')->result_array();
 		$data['arr_menu'] = $this->breadcrumbs;
 		$this->load->view('index', $data);
 	}
