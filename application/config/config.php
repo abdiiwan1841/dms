@@ -29,7 +29,7 @@ $config['base_url'] = 'http://'.$_SERVER['SERVER_NAME'].'/dms';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'index.php';
+$config['index_page'] = '';
 
 /*
 |--------------------------------------------------------------------------
@@ -59,7 +59,7 @@ $config['uri_protocol']	= 'REQUEST_URI';
 | http://codeigniter.com/user_guide/general/urls.html
 */
 
-$config['url_suffix'] = '';
+$config['url_suffix'] = '.html';
 
 /*
 |--------------------------------------------------------------------------
@@ -305,7 +305,7 @@ $config['cache_query_string'] = FALSE;
 | http://codeigniter.com/user_guide/libraries/encryption.html
 |
 */
-$config['encryption_key'] = '';
+$config['encryption_key'] = 'dms-23234&536q3(*&^$#$%&3';
 
 /*
 |--------------------------------------------------------------------------

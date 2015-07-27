@@ -34,15 +34,15 @@
 
     <div class="container">
 
-      <form class="form-signin" method="post" action="<?php echo base_url();?>dashboard">
+      <form class="form-signin" method="post" action="<?php echo base_url('auth');?>">
 		<div class="form-signin-header">
 		<div class="dealer_logo"><img src="<?php echo base_url();?>assets/images/logo_dealer.png" height="75px"></div>
 		<div class="dealer_details"><h2>nama dealer</h2><h3>alamat dealer</h3></div>
 		</div>
         <div class="login-wrap">
             <div class="user-login-info">
-                <input type="text" class="form-control" placeholder="User ID" autofocus>
-                <input type="password" class="form-control" placeholder="Password">
+                <input type="text" name="user" class="form-control" placeholder="User ID" autofocus>
+                <input type="password" name="pass" class="form-control" placeholder="Password">
             </div>
             <!--label class="checkbox">
                 <input type="checkbox" value="remember-me"> Remember me
@@ -51,6 +51,7 @@
                 </span>
             </label-->
             <button class="btn btn-lg btn-login btn-block" type="submit">Masuk</button>
+            <?php echo $this->session->flashdata('note')?></pre>
 			<div class="footer-form"><img src="<?php echo base_url();?>assets/images/logo_Adira_Finance.png"><br>
 			Copyright @ Adira Dinamika Multi Finance - 2015
 			</div>
