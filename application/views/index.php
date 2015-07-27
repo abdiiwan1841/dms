@@ -25,6 +25,11 @@
     <!-- Custom styles for this template -->
     <link href="<?php echo base_url();?>assets/css/style.css" rel="stylesheet">
     <link href="<?php echo base_url();?>assets/css/style-responsive.css" rel="stylesheet"/>
+    
+    <!--dynamic table-->
+    <link href="<?php echo base_url();?>assets/js/advanced-datatable/css/demo_page.css" rel="stylesheet" />
+    <link href="<?php echo base_url();?>assets/js/advanced-datatable/css/demo_table.css" rel="stylesheet" />
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/js/data-tables/DT_bootstrap.css" />
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]>
     <script src="js/ie8-responsive-file-warning.js"></script><![endif]-->
