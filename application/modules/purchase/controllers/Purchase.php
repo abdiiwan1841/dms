@@ -96,5 +96,22 @@ class Purchase extends MY_Controller {
 		$data['arr_menu'] = $this->breadcrumbs;
 		$this->load->view('index', $data);
 	}
+        
+        
+        //ADI
+        public function print_reports() {
+
+        $this->load->library('Pdf');
+        $file_name = "assets/test.pdf";
+      
+     
+
+    
+        $data['test'] = "test";
+
+        $this->pdf->pdf_create($this->load->view('print_purchase_reports', $data, TRUE), $file_name, FALSE);
+        //$this->pdf->pdf_create($this->load->view('v_anggota/test', '', TRUE), $file_name, FALSE);
+    }
+
 		
 }
