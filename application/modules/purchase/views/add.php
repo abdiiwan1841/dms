@@ -11,45 +11,78 @@ a.btn {
   <section class="panel">
     <header class="panel-heading"> Tambah Pembelian </header>
     <div class="panel-body">
-      <form class="form-horizontal bucket-form" method="get">
+      <form class="form-horizontal bucket-form" method="post">
         <div class="form-group">
           <label class="col-lg-2 control-label">No. Faktur</label>
           <div class="col-lg-4">
               <input type="text" class="form-control" placeholder="No. Faktur">
           </div>
-          <label class="col-lg-2 control-label">Tanggal</label>
+          <label class="col-lg-2 control-label">Total</label>
           <div class="col-lg-4">
-            <input class="form-control form-control-inline input-medium default-date-picker"  size="16" type="text" value="" />
+            <input class="form-control"  size="16" type="text" placeholder="Total" />
           </div>
         </div>
         <div class="form-group">
-          <label class="col-lg-2 control-label">No. Faktur</label>
+          <label class="col-lg-2 control-label">Penjual</label>
           <div class="col-lg-4">
-              <input type="text" class="form-control" placeholder="No. Faktur">
+              <input type="text" class="form-control" placeholder="Penjual">
           </div>
-          <label class="col-lg-2 control-label">Tanggal</label>
+          <label class="col-lg-2 control-label">Bayar</label>
           <div class="col-lg-4">
-            <input class="form-control form-control-inline input-medium default-date-picker"  size="16" type="text" value="" />
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-lg-2 control-label">No. Faktur</label>
-          <div class="col-lg-4">
-              <input type="text" class="form-control" placeholder="No. Faktur">
-          </div>
-          <label class="col-lg-2 control-label">Tanggal</label>
-          <div class="col-lg-4">
-            <input class="form-control form-control-inline input-medium default-date-picker"  size="16" type="text" value="" />
+            <input class="form-control"  size="16" type="text" value="" placeholder="Bayar"/>
           </div>
         </div>
         <div class="form-group">
-          <label class="col-lg-2 control-label">Keterangan</label>
-          <div class="col-lg-10">
-            <input type="text" class="form-control" disabled>
+          <label class="col-lg-2 control-label">Tanggal</label>
+          <div class="col-lg-4">
+              <input type="text" class="form-control form-control-inline input-medium default-date-picker" placeholder="28/07/2015">
+          </div>
+          <label class="col-lg-2 control-label">Penanggung Jawab</label>
+          <div class="col-lg-4">
+            <input class="form-control"  size="16" type="text" value="" placeholder="Penanggung Jawab"/>
           </div>
         </div>
       </form>
+      <br>
+      <hr>
+      <div class="adv-table">
+        <table  class=" table table-striped">
+          <thead>
+            <tr>
+              <th>No. Polisi</th>
+              <th>Merk</th>
+              <th>Model</th>
+              <th>Tahun Pembuatan</th>
+              <th>Harga Beli</th>
+              <th>Umur (bln)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <tr>
+              <th>No. Polisi</th>
+              <th>Merk</th>
+              <th>Model</th>
+              <th>Tahun Pembuatan</th>
+              <th>Harga Beli</th>
+              <th>Umur (bln)</th>
+            </tr>
+            </tr>
+          </tfoot>
+        </table>
+        
     </div>
+    <button name="tambah" id="tambah" class="btn btn-primary">Tambah <i class="fa fa-plus"></i></button>
     <?php echo anchor('purchase/add','Tambah','class="btn btn-info pull-right"');?>
     <div class="clearfix"></div>
   </section>
@@ -62,6 +95,7 @@ a.btn {
         <h4 class="modal-title">Detail</h4>
       </div>
       <div class="modal-body">
+      <form class="form-horizontal bucket-form" method="post">
         <div class="form-group">
           <label class="col-lg-2 control-label">No</label>
           <div class="col-lg-4">
@@ -152,6 +186,7 @@ a.btn {
             <input class="form-control form-control-inline input-medium default-date-picker"  size="16" type="text" value="" />
           </div>
         </div>
+        </form>
         <div style="clear:both"></div>
       </div>
       <div class="modal-footer">
