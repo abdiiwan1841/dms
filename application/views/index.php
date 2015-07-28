@@ -848,22 +848,53 @@
 			data:data_motor,
 			success: function(result){
 				var append = "<tr>";
+				var id_motor_append = '';
+				var total = 0;
 				var value = $.parseJSON(result);
 				//$.each(result, function(index, value){
-					append += "<td data-value='"+value.id_motor+"'>"+value.no_pol+"</td>";
+					append += "<td>"+value.no_pol+"</td>";
 					append += "<td>"+value.merk+"</td>";
 					append += "<td>"+value.model+"</td>";
 					append += "<td>"+value.th_pembuatan+"</td>";
-					append += "<td>"+value.harga+"</td>";
+					append += "<td class='harga_beli'>"+value.harga+"</td>";
 					append += "<td>"+value.umur+"</td>";
+					id_motor_append += "<input type='hidden' value='"+value.id_motor+"' name='id_motors[]'>"; 
 				//})
 				append += "</tr>";
+				
+				
 				$('.row-default').remove();
 				$('.tbody-motor').append(append);
+				$('.harga_beli').each(function() {
+					total += parseInt($(this).html());  
+				 });
+				$('.total-harga-motor').val(total);
+				$('.id_motors_area').append(id_motor_append);
 				$('#ModalAdd').modal('hide');
 			}
 		});
+		$('.form-add-motor')[0].reset();
     });
+	$('.form-add-faktur').submit(function(e) {
+        e.preventDefault();
+		var data_motor = $(this).serialize();
+		console.log(data_motor);
+		$.ajax({
+			url:$(this).attr('action'),
+			type:'POST',
+			data:data_motor,
+			success: function(result){
+				
+			}
+		});
+		$('.form-add-faktur')[0].reset();
+    });
+	
+	$(document).ready(function() { 
+	   $('.form-update-faktur input').keypress(function() { 
+			$('.buat-faktur').removeAttr('disabled');
+	   }); 
+	});
 </script>
 </body>
 </html>

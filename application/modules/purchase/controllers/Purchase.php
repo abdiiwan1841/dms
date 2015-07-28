@@ -39,9 +39,12 @@ class Purchase extends MY_Controller {
 			'title' => array('Dashboard','Pembelian & Penerimaan Titipan','Pembelian','Detail'),
 			'url' => array('/dashboard','/purchase', '/purchase','/detail')
 			);
-		$data['data_purchase'] = $this->purchasemodel->getPurchase($no_faktur)->result_array();
+		$data['data_purchase'] = $this->purchasemodel->getPurchaseDetail($no_faktur)->result_array();
+		$data['data_purchase'] = array_shift($data['data_purchase']);
+		$data['data_motors'] = $this->purchasemodel->getPurchaseDetailMotor($no_faktur)->result_array();
 		$data['arr_menu'] = $this->breadcrumbs;
 		//print_r($data['data_purchase']);
+		//echo json_encode($data['data_motors']);
 		$this->load->view('index', $data);
 	}
 	
@@ -60,6 +63,26 @@ class Purchase extends MY_Controller {
 				'umur' => $_POST['umur']
 			);
 			echo json_encode($json);
+		}else{
+			echo '0';	
+		}
+	}
+	public function simpanFaktur(){
+		$this->load->model('purchasemodel');
+		$temp_id_motors = $_POST['id_motors'];
+		$data_detail_pembelian = array();
+		foreach($temp_id_motors as $idx => $id_motor){
+			$data_detail_pembelian[$idx]['id_motor'] = $id_motor;
+			$data_detail_pembelian[$idx]['id_pembelian'] = $_POST['no_faktur'];
+		}
+		unset($_POST['id_motors']);
+		
+		$result_pembelian = $this->purchasemodel->addPembelian($_POST);
+		foreach($data_detail_pembelian as $detail_pembelian){
+			$result_pembelian = $this->purchasemodel->addDetailPembelian($detail_pembelian);
+		}
+		if($result){
+			echo '1';
 		}else{
 			echo '0';	
 		}
