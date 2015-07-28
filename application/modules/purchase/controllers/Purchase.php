@@ -28,7 +28,19 @@ class Purchase extends MY_Controller {
 			'title' => array('Dashboard','Pembelian & Penerimaan Titipan','Pembelian','Add'),
 			'url' => array('/dashboard','/purchase', '/purchase','/add')
 			);
-		$data['data_purchase'] = $this->purchasemodel->getPurchase('')->result_array();
+		$data_penjual = $this->purchasemodel->getDataPenjual()->result_array();
+		$data_pegawai = $this->purchasemodel->getDataPegawai()->result_array();
+		$temp_penjuals = array();
+		foreach($data_penjual as $penjual){
+			$temp_penjuals[$penjual['id']] = $penjual['nama_suplier'];
+		}
+		
+		$temp_pegawai = array();
+		foreach($data_pegawai as $pegawai){
+			$temp_pegawai[$pegawai['id']] = $pegawai['nama'];
+		}
+		$data['data_penjual'] = $temp_penjuals;
+		$data['data_pegawai'] = $temp_pegawai;
 		$data['arr_menu'] = $this->breadcrumbs;
 		$this->load->view('index', $data);
 	}
@@ -41,12 +53,81 @@ class Purchase extends MY_Controller {
 			'title' => array('Dashboard','Pembelian & Penerimaan Titipan','Pembelian','Detail'),
 			'url' => array('/dashboard','/purchase', '/purchase','/detail')
 			);
-		$data['data_purchase'] = $this->purchasemodel->getPurchase($no_faktur)->result_array();
+		$data['data_purchase'] = $this->purchasemodel->getPurchaseDetail($no_faktur)->result_array();
+		$data['data_purchase'] = array_shift($data['data_purchase']);
+		$data['data_motors'] = $this->purchasemodel->getPurchaseDetailMotor($no_faktur)->result_array();
+		
 		$data['arr_menu'] = $this->breadcrumbs;
+		
+		$data_penjual = $this->purchasemodel->getDataPenjual()->result_array();
+		$data_pegawai = $this->purchasemodel->getDataPegawai()->result_array();
+		$temp_penjuals = array();
+		foreach($data_penjual as $penjual){
+			$temp_penjuals[$penjual['id']] = $penjual['nama_suplier'];
+		}
+		
+		$temp_pegawai = array();
+		foreach($data_pegawai as $pegawai){
+			$temp_pegawai[$pegawai['id']] = $pegawai['nama'];
+		}
+		$data['data_penjual'] = $temp_penjuals;
+		$data['data_pegawai'] = $temp_pegawai;
 		$this->load->view('index', $data);
 	}
-	public function savepurchase(){
-
+	
+	public function simpanMotor(){
+		$this->load->model('purchasemodel');
+		
+		$result = $this->purchasemodel->addMotor($_POST);
+		if($result){
+			$json = array(
+				'id_motor' => $result,
+				'no_pol' => $_POST['no_polisi'],
+				'merk' => $_POST['merk'],
+				'model' => $_POST['model'],
+				'th_pembuatan' => $_POST['tahun_pembuatan'],
+				'harga' => $_POST['harga_beli'],
+				'umur' => $_POST['umur']
+			);
+			echo json_encode($json);
+		}else{
+			echo '0';	
+		}
+	}
+	public function simpanFaktur(){
+		$this->load->model('purchasemodel');
+		$temp_id_motors = $_POST['id_motors'];
+		$data_detail_pembelian = array();
+		foreach($temp_id_motors as $idx => $id_motor){
+			$data_detail_pembelian[$idx]['id_motor'] = $id_motor;
+			$data_detail_pembelian[$idx]['id_pembelian'] = $_POST['no_faktur'];
+		}
+		unset($_POST['id_motors']);
+		
+		$result_pembelian = $this->purchasemodel->addPembelian($_POST);
+		foreach($data_detail_pembelian as $detail_pembelian){
+			$result_pembelian = $this->purchasemodel->addDetailPembelian($detail_pembelian);
+		}
+		if($result){
+			echo '1';
+		}else{
+			echo '0';	
+		}
+	}
+	
+	public function ubahFaktur(){
+		$this->load->model('purchasemodel');
+		$where['no_faktur'] = $_POST['no_faktur'];
+		unset($_POST['no_faktur']);
+		unset($_POST['total']);
+		$_POST['bayar'] = str_replace('.','',$_POST['bayar']);
+		$result = $this->purchasemodel->ubahFaktur($where, $_POST);
+		if($result){
+			echo '1';
+		}else{
+			echo '0';	
+		}
+		redirect('purchase/detail/'.$where['no_faktur']);
 	}
 
 	public function loadmerk(){

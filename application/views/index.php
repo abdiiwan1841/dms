@@ -64,7 +64,7 @@
     <!--  notification start -->
     <ul class="nav top-menu">
         <!-- settings start -->
-        <li class="dropdown">
+<!--        <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
                 <i class="fa fa-tasks"></i>
                 <span class="badge bg-success">8</span>
@@ -117,10 +117,10 @@
                     <a href="index.html#">See All Tasks</a>
                 </li>
             </ul>
-        </li>
+        </li>-->
         <!-- settings end -->
         <!-- inbox dropdown start-->
-        <li id="header_inbox_bar" class="dropdown">
+<!--        <li id="header_inbox_bar" class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
                 <i class="fa fa-envelope-o"></i>
                 <span class="badge bg-important">4</span>
@@ -182,7 +182,7 @@
                 </li>
             </ul>
         </li>
-        <!-- inbox dropdown end -->
+         inbox dropdown end -->
         <!-- notification dropdown start-->
         <!--li id="header_notification_bar" class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
@@ -235,7 +235,7 @@
         <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
                 <img alt="" src="<?php echo base_url();?>assets/images/avatar_user_male.jpg">
-                <span class="username">John Doe</span>
+                <span class="username">Administrator </span>
                 <b class="caret"></b>
             </a>
             <ul class="dropdown-menu extended logout">
@@ -836,6 +836,68 @@
             //e.preventDefault();
         });
     })
+	$('btn').click(function(e) {
+        
+    });
+	$('.form-add-motor').submit(function(e) {
+        e.preventDefault();
+		var data_motor = $(this).serialize();
+		$.ajax({
+			url:$(this).attr('action'),
+			type:'POST',
+			data:data_motor,
+			success: function(result){
+				var append = "<tr>";
+				var id_motor_append = '';
+				var total = 0;
+				var value = $.parseJSON(result);
+				//$.each(result, function(index, value){
+					append += "<td>"+value.no_pol+"</td>";
+					append += "<td>"+value.merk+"</td>";
+					append += "<td>"+value.model+"</td>";
+					append += "<td>"+value.th_pembuatan+"</td>";
+					append += "<td class='harga_beli'>"+value.harga+"</td>";
+					append += "<td>"+value.umur+"</td>";
+					id_motor_append += "<input type='hidden' value='"+value.id_motor+"' name='id_motors[]'>"; 
+				//})
+				append += "</tr>";
+				
+				
+				$('.row-default').remove();
+				$('.tbody-motor').append(append);
+				$('.harga_beli').each(function() {
+					total += parseInt($(this).html());  
+				 });
+				$('.total-harga-motor').val(total);
+				$('.id_motors_area').append(id_motor_append);
+				$('#ModalAdd').modal('hide');
+			}
+		});
+		$('.form-add-motor')[0].reset();
+    });
+	$('.form-add-faktur').submit(function(e) {
+        e.preventDefault();
+		var data_motor = $(this).serialize();
+		console.log(data_motor);
+		$.ajax({
+			url:$(this).attr('action'),
+			type:'POST',
+			data:data_motor,
+			success: function(result){
+				
+			}
+		});
+		$('.form-add-faktur')[0].reset();
+    });
+	
+	$(document).ready(function() { 
+	   $('.form-update-faktur input').keypress(function() { 
+			$('.buat-faktur').removeAttr('disabled');
+	   });
+	   $('.form-update-faktur select').change(function() { 
+			$('.buat-faktur').removeAttr('disabled');
+	   }); 
+	});
 </script>
 </body>
 </html>
