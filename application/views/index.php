@@ -836,6 +836,34 @@
             //e.preventDefault();
         });
     })
+	$('btn').click(function(e) {
+        
+    });
+	$('.form-add-motor').submit(function(e) {
+        e.preventDefault();
+		var data_motor = $(this).serialize();
+		$.ajax({
+			url:$(this).attr('action'),
+			type:'POST',
+			data:data_motor,
+			success: function(result){
+				var append = "<tr>";
+				var value = $.parseJSON(result);
+				//$.each(result, function(index, value){
+					append += "<td data-value='"+value.id_motor+"'>"+value.no_pol+"</td>";
+					append += "<td>"+value.merk+"</td>";
+					append += "<td>"+value.model+"</td>";
+					append += "<td>"+value.th_pembuatan+"</td>";
+					append += "<td>"+value.harga+"</td>";
+					append += "<td>"+value.umur+"</td>";
+				//})
+				append += "</tr>";
+				$('.row-default').remove();
+				$('.tbody-motor').append(append);
+				$('#ModalAdd').modal('hide');
+			}
+		});
+    });
 </script>
 </body>
 </html>

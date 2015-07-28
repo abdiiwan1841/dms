@@ -21,14 +21,12 @@ class Purchase extends MY_Controller {
 	}
 
 	public function add(){
-		$this->load->model('purchasemodel');
 		$data['contents'] = 'purchase/add';
 		$data['title'] = $this->title;
 		$this->breadcrumbs = array(
 			'title' => array('Dashboard','Pembelian & Penerimaan Titipan','Pembelian','Add'),
 			'url' => array('/dashboard','/purchase', '/purchase','/add')
 			);
-		$data['data_purchase'] = $this->purchasemodel->getPurchase('')->result_array();
 		$data['arr_menu'] = $this->breadcrumbs;
 		$this->load->view('index', $data);
 	}
@@ -43,10 +41,28 @@ class Purchase extends MY_Controller {
 			);
 		$data['data_purchase'] = $this->purchasemodel->getPurchase($no_faktur)->result_array();
 		$data['arr_menu'] = $this->breadcrumbs;
+		//print_r($data['data_purchase']);
 		$this->load->view('index', $data);
 	}
-	public function savepurchase(){
-
+	
+	public function simpanMotor(){
+		$this->load->model('purchasemodel');
+		
+		$result = $this->purchasemodel->addMotor($_POST);
+		if($result){
+			$json = array(
+				'id_motor' => $result,
+				'no_pol' => $_POST['no_polisi'],
+				'merk' => $_POST['merk'],
+				'model' => $_POST['model'],
+				'th_pembuatan' => $_POST['tahun_pembuatan'],
+				'harga' => $_POST['harga_beli'],
+				'umur' => $_POST['umur']
+			);
+			echo json_encode($json);
+		}else{
+			echo '0';	
+		}
 	}
 
 	public function loadmerk(){
