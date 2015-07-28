@@ -131,13 +131,25 @@ class Purchase extends MY_Controller {
 		$data['title'] = $this->title;
 		$this->breadcrumbs = array(
 			'title' => array('Dashboard','Pembelian & Penerimaan Titipan','Pembelian'),
-			'url' => array('/admin/dashboard','/admin/test', '/admin/test')
+			'url' => array('/dashboard','/purchase', '/purchase')
 			);
 		$data['data_purchase'] = $this->purchasemodel->getPurchase('')->result_array();
 		$data['arr_menu'] = $this->breadcrumbs;
 		$this->load->view('index', $data);
 	}
 
+	public function add(){
+		$this->load->model('purchasemodel');
+		$data['contents'] = 'purchase/add';
+		$data['title'] = $this->title;
+		$this->breadcrumbs = array(
+			'title' => array('Dashboard','Pembelian & Penerimaan Titipan','Pembelian','Add'),
+			'url' => array('/dashboard','/purchase', '/purchase','/add')
+			);
+		$data['data_purchase'] = $this->purchasemodel->getPurchase('')->result_array();
+		$data['arr_menu'] = $this->breadcrumbs;
+		$this->load->view('index', $data);
+	}
 	public function savepurchase(){
 
 	}
