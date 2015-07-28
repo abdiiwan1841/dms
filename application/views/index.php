@@ -64,7 +64,7 @@
     <!--  notification start -->
     <ul class="nav top-menu">
         <!-- settings start -->
-        <li class="dropdown">
+<!--        <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
                 <i class="fa fa-tasks"></i>
                 <span class="badge bg-success">8</span>
@@ -117,10 +117,10 @@
                     <a href="index.html#">See All Tasks</a>
                 </li>
             </ul>
-        </li>
+        </li>-->
         <!-- settings end -->
         <!-- inbox dropdown start-->
-        <li id="header_inbox_bar" class="dropdown">
+<!--        <li id="header_inbox_bar" class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
                 <i class="fa fa-envelope-o"></i>
                 <span class="badge bg-important">4</span>
@@ -182,7 +182,7 @@
                 </li>
             </ul>
         </li>
-        <!-- inbox dropdown end -->
+         inbox dropdown end -->
         <!-- notification dropdown start-->
         <!--li id="header_notification_bar" class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
@@ -235,7 +235,7 @@
         <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
                 <img alt="" src="<?php echo base_url();?>assets/images/avatar_user_male.jpg">
-                <span class="username">John Doe</span>
+                <span class="username">Administrator </span>
                 <b class="caret"></b>
             </a>
             <ul class="dropdown-menu extended logout">
