@@ -839,6 +839,9 @@
 	$('btn').click(function(e) {
         
     });
+	
+	
+	// pembelian
 	$('.form-add-motor').submit(function(e) {
         e.preventDefault();
 		var data_motor = $(this).serialize();
@@ -874,6 +877,7 @@
 			}
 		});
 		$('.form-add-motor')[0].reset();
+		$('.buat-faktur').removeAttr('disabled');
     });
 	$('.form-add-faktur').submit(function(e) {
         e.preventDefault();
@@ -884,7 +888,7 @@
 			type:'POST',
 			data:data_motor,
 			success: function(result){
-				
+				document.location.reload();
 			}
 		});
 		$('.form-add-faktur')[0].reset();
@@ -892,10 +896,10 @@
 	
 	$(document).ready(function() { 
 	   $('.form-update-faktur input').keypress(function() { 
-			$('.buat-faktur').removeAttr('disabled');
+			$('.ubah-faktur').removeAttr('disabled');
 	   });
 	   $('.form-update-faktur select').change(function() { 
-			$('.buat-faktur').removeAttr('disabled');
+			$('.ubah-faktur').removeAttr('disabled');
 	   }); 
 	});
 </script>

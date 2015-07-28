@@ -16,27 +16,21 @@ a.btn {
         <div class="form-group">
           <label class="col-lg-2 control-label">No. Faktur</label>
           <div class="col-lg-4">
-              <input type="text" name= "no_faktur" class="form-control" placeholder="No. Faktur">
+              <input type="text" name= "no_faktur" value="<?php echo $no_faktur?>" class="form-control" placeholder="No. Faktur" readonly required>
           </div>
-          <label class="col-lg-2 control-label">Bayar</label>
+          <label class="col-lg-2 control-label">Tanggal</label>
           <div class="col-lg-4">
-            <input name = "bayar" class="form-control"  size="16" type="text" value="" placeholder="Bayar"/>
+              <input name = "tanggal" type="text" class="form-control form-control-inline input-medium default-date-picker" placeholder="28/07/2015" required>
           </div>
         </div>
         <div class="form-group">
           <label class="col-lg-2 control-label">Penjual</label>
           <div class="col-lg-4">
-          	  <?php echo form_dropdown('id_supplier',$data_penjual,'','class="form-control" placeholder="Penjual"');?>
+          	  <?php echo form_dropdown('id_supplier',$data_penjual,'','class="form-control" placeholder="Penjual" required');?>
           </div>
           <label class="col-lg-2 control-label">Penanggung Jawab</label>
           <div class="col-lg-4">
-            <?php echo form_dropdown('id_pegawai',$data_pegawai,'','class="form-control" placeholder="Penanggung Jawab"');?>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-lg-2 control-label">Tanggal</label>
-          <div class="col-lg-4">
-              <input name = "tanggal" type="text" class="form-control form-control-inline input-medium default-date-picker" placeholder="28/07/2015">
+            <?php echo form_dropdown('id_pegawai',$data_pegawai,'','class="form-control" placeholder="Penanggung Jawab" required');?>
           </div>
         </div>
      
@@ -73,14 +67,20 @@ a.btn {
     <div class="form-group">
           <label class="col-lg-1 control-label">Total</label>
           <div class="col-lg-11">
-            <input name="total" class="form-control total-harga-motor"  size="16" type="text" placeholder="Total" readonly/>
+            <input name="total" class="form-control total-harga-motor"  size="16" type="text" placeholder="Total" readonly required/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-1 control-label">Bayar</label>
+          <div class="col-lg-11">
+            <input name = "bayar" class="form-control"  size="16" type="text" value="" placeholder="Bayar" required/>
           </div>
         </div>
     <div class="id_motors_area">
     	
     </div>
     <br>
-    <button type="submit" class="btn btn-info pull-right">Buat Faktur</button>
+    <button type="submit" class="btn btn-info pull-right buat-faktur" disabled>Buat Faktur</button>
     <div class="clearfix"></div>
      </form>
   </section>
@@ -98,72 +98,72 @@ a.btn {
           
           <label class="col-lg-2 control-label">No. Polisi</label>
           <div class="col-lg-4">
-            <input type="text" name="no_polisi" class="form-control">
+            <input type="text" name="no_polisi" class="form-control" required placeholder="No. Polisi">
           </div>
           <label class="col-lg-2 control-label">Merk</label>
           <div class="col-lg-4">
-            <input type="text" name="merk" class="form-control" placeholder="Merk" id="automerk">
+            <input type="text" name="merk" class="form-control" placeholder="Merk" id="automerk" required>
           </div>
         </div>
         <div class="form-group">
           <label class="col-lg-2 control-label">Model</label>
           <div class="col-lg-4">
-            <input type="text" name= "model" class="form-control" placeholder="Model" id="automodel">
+            <input type="text" name= "model" class="form-control" placeholder="Model" id="automodel" required>
           </div>
           <label class="col-lg-2 control-label">Isi Silinder</label>
           <div class="col-lg-4">
-            <input type="text" name = "isi_silinder" class="form-control" placeholder="Isi Silinder">
+            <input type="text" name = "isi_silinder" class="form-control" placeholder="Isi Silinder" required>
           </div>
         </div>
         <div class="form-group">
           <label class="col-lg-2 control-label">Akhir STNK</label>
           <div class="col-lg-4">
-            <input name = "tanggal_akhir_stnk" class="form-control form-control-inline input-medium default-date-picker"  size="16" type="text" value="" placeholder="Akhir STNK" />
+            <input name = "tanggal_akhir_stnk" class="form-control form-control-inline input-medium default-date-picker"  size="16" type="text" value="" placeholder="Akhir STNK" required/>
           </div>
           <label class="col-lg-2 control-label">Th. Pembuatan</label>
           <div class="col-lg-4">
-            <input type="text" name = "tahun_pembuatan" class="form-control" placeholder="Tahun Pembuatan">
+            <input type="text" name = "tahun_pembuatan" class="form-control" placeholder="Tahun Pembuatan" required>
           </div>
         </div>
         <div class="form-group">
           <label class="col-lg-2 control-label">Warna</label>
           <div class="col-lg-4">
-            <input type="text" name "warna" class="form-control" placeholder="Warna" id="autowarna">
+            <input type="text" name "warna" class="form-control" placeholder="Warna" id="autowarna" required>
               
           </div>
           <label class="col-lg-2 control-label">Nama BPKB</label>
           <div class="col-lg-4">
-            <input type="text" name = "nama_bpkb"class="form-control" placeholder="Nama BPKB">
+            <input type="text" name = "nama_bpkb"class="form-control" placeholder="Nama BPKB" required>
           </div>
         </div>
         <div class="form-group">
           <label class="col-lg-2 control-label">Alamat BPKB</label>
           <div class="col-lg-4">
-            <input type="text" name = "alamat_bpkb" class="form-control" placeholder="Alamat BPKB">
+            <input type="text" name = "alamat_bpkb" class="form-control" placeholder="Alamat BPKB" required>
           </div>
           <label class="col-lg-2 control-label">No. Rangka</label>
           <div class="col-lg-4">
-            <input type="text" name = "no_rangka" class="form-control" placeholder="No. Rangka">
+            <input type="text" name = "no_rangka" class="form-control" placeholder="No. Rangka" required>
           </div>
         </div>
         <div class="form-group">
           <label class="col-lg-2 control-label">No. Mesin</label>
           <div class="col-lg-4">
-            <input type="text" name = "no_mesin" class="form-control" placeholder="No. Mesin">
+            <input type="text" name = "no_mesin" class="form-control" placeholder="No. Mesin" required>
           </div>
           <label class="col-lg-2 control-label">No. BPKB</label>
           <div class="col-lg-4">
-            <input type="text" name = "no_bpkb" class="form-control" placeholder="No. BPKB">
+            <input type="text" name = "no_bpkb" class="form-control" placeholder="No. BPKB" required>
           </div>
         </div>
         <div class="form-group">
           <label class="col-sm-2 control-label">Harga Beli</label>
           <div class="col-lg-4">
-            <input type="text" name = "harga_beli" placeholder="" data-mask="999,999,999.99" class="form-control" data-toggle="tooltip" data-placement="bottom" title="Harga Beli dalam angka" placeholder="Harga Beli">
+            <input type="text" name = "harga_beli" placeholder="" data-mask="999,999,999.99" class="form-control" data-toggle="tooltip" data-placement="bottom" title="Harga Beli dalam angka" placeholder="Harga Beli" required>
           </div>
           <label class="col-lg-2 control-label">Umur (Bln)</label>
           <div class="col-lg-4">
-            <input type="text" name = "umur" class="form-control" placeholder="Umur (Bln)">
+            <input type="text" name = "umur" class="form-control" placeholder="Umur (Bln)" required>
           </div>
         </div>
         

@@ -16,27 +16,21 @@ a.btn {
         <div class="form-group">
           <label class="col-lg-2 control-label">No. Faktur</label>
           <div class="col-lg-4">
-              <input type="text" name= "no_faktur" class="form-control" placeholder="No. Faktur" value="<?php echo $data_purchase['no_faktur']?>" readonly>
+              <input type="text" name= "no_faktur" class="form-control" placeholder="No. Faktur" value="<?php echo $data_purchase['no_faktur']?>" readonly required>
           </div>
-          <label class="col-lg-2 control-label">Bayar</label>
+          <label class="col-lg-2 control-label">Tanggal</label>
           <div class="col-lg-4">
-            <input name = "bayar" class="form-control"  size="16" type="text" value="<?php echo $data_purchase['bayar']?>" placeholder="Bayar"/>
+              <input name = "tanggal" type="text" class="form-control form-control-inline input-medium default-date-picker" placeholder="28/07/2015" value="<?php echo $data_purchase['tanggal']?>" required>
           </div>
         </div>
         <div class="form-group">
           <label class="col-lg-2 control-label">Penjual</label>
           <div class="col-lg-4">
-          		<?php echo form_dropdown('id_supplier',$data_penjual,$data_purchase['nama_suplier'],'class="form-control" placeholder="Penjual"');?>
+          		<?php echo form_dropdown('id_supplier',$data_penjual,$data_purchase['nama_suplier'],'class="form-control" placeholder="Penjual" required');?>
           </div>
           <label class="col-lg-2 control-label">Penanggung Jawab</label>
           <div class="col-lg-4">
-          		<?php echo form_dropdown('id_pegawai',$data_pegawai,$data_purchase['nama'],'class="form-control" placeholder="Penanggung Jawab"');?>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-lg-2 control-label">Tanggal</label>
-          <div class="col-lg-4">
-              <input name = "tanggal" type="text" class="form-control form-control-inline input-medium default-date-picker" placeholder="28/07/2015" value="<?php echo $data_purchase['tanggal']?>">
+          		<?php echo form_dropdown('id_pegawai',$data_pegawai,$data_purchase['nama'],'class="form-control" placeholder="Penanggung Jawab"required');?>
           </div>
         </div>
      
@@ -76,14 +70,20 @@ a.btn {
     <div class="form-group">
           <label class="col-lg-1 control-label">Total</label>
           <div class="col-lg-11">
-            <input name="total" value="<?php echo number_format($sumTotal, 0, '.', '.');?>" class="form-control total-harga-motor"  size="16" type="text" placeholder="Total" readonly/>
+            <input name="total" value="<?php echo number_format($sumTotal, 0, '.', '.');?>" class="form-control total-harga-motor"  size="16" type="text" placeholder="Total" readonly required/>
+          </div>
+        </div>
+        <div class="form-group">
+         <label class="col-lg-1 control-label">Bayar</label>
+          <div class="col-lg-11">
+            <input name = "bayar" class="form-control"  size="16" type="text" value="<?php echo $data_purchase['bayar']?>" placeholder="Bayar" required/>
           </div>
         </div>
     <div class="id_motors_area">
     	
     </div>
     <br>
-    <button type="submit" class="btn btn-info pull-right buat-faktur" disabled>Ubah Faktur</button>
+    <button type="submit" class="btn btn-info pull-right ubah-faktur" disabled>Ubah Faktur</button>
     <div class="clearfix"></div>
      </form>
   </section>

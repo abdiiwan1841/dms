@@ -53,5 +53,12 @@ class PurchaseModel extends CI_Model {
 	public function getDataPegawai(){
 		return $this->db->get('dms_pegawai');
 	}
+	
+	public function getPurchaseLastData(){
+		$this->db->limit(1);
+		$this->db->select('id');
+		$this->db->order_by('id','DESC');
+		return $this->db->get('dms_pembelian');
+	}
 		
 }

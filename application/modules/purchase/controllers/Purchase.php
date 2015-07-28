@@ -28,6 +28,9 @@ class Purchase extends MY_Controller {
 			'title' => array('Dashboard','Pembelian & Penerimaan Titipan','Pembelian','Add'),
 			'url' => array('/dashboard','/purchase', '/purchase','/add')
 			);
+			
+		
+		
 		$data_penjual = $this->purchasemodel->getDataPenjual()->result_array();
 		$data_pegawai = $this->purchasemodel->getDataPegawai()->result_array();
 		$temp_penjuals = array();
@@ -42,6 +45,7 @@ class Purchase extends MY_Controller {
 		$data['data_penjual'] = $temp_penjuals;
 		$data['data_pegawai'] = $temp_pegawai;
 		$data['arr_menu'] = $this->breadcrumbs;
+		$data['no_faktur'] = self::_generate_no_faktur();
 		$this->load->view('index', $data);
 	}
 	
@@ -98,13 +102,16 @@ class Purchase extends MY_Controller {
 		$this->load->model('purchasemodel');
 		$temp_id_motors = $_POST['id_motors'];
 		$data_detail_pembelian = array();
+		
+		unset($_POST['id_motors']);
+		unset($_POST['total']);
+		$result_pembelian = $this->purchasemodel->addPembelian($_POST);
+		
 		foreach($temp_id_motors as $idx => $id_motor){
 			$data_detail_pembelian[$idx]['id_motor'] = $id_motor;
-			$data_detail_pembelian[$idx]['id_pembelian'] = $_POST['no_faktur'];
+			$data_detail_pembelian[$idx]['id_pembelian'] = $result_pembelian;
 		}
-		unset($_POST['id_motors']);
 		
-		$result_pembelian = $this->purchasemodel->addPembelian($_POST);
 		foreach($data_detail_pembelian as $detail_pembelian){
 			$result_pembelian = $this->purchasemodel->addDetailPembelian($detail_pembelian);
 		}
@@ -205,5 +212,22 @@ class Purchase extends MY_Controller {
 		$data['arr_menu'] = $this->breadcrumbs;
 		$this->load->view('index', $data);
 	}
-		
+	
+	private function _generate_no_faktur(){
+		$this->load->model('purchasemodel');
+		$data_purchase = $this->purchasemodel->getPurchaseLastData()->row();
+		$lastID = ($data_purchase->id+1);
+		$prefix = 'P';
+		$no_faktur = $prefix.$lastID;
+		return $no_faktur;
+	}
+	
+	private function _check_no_faktur($no_faktur){
+		$result = false;
+		$isAvailable = $this->purchasemodel->getPurchase($no_faktur)->result_array();
+		if($isAvailable){
+			$result = true;
+		}
+		return $result;
+	}
 }
