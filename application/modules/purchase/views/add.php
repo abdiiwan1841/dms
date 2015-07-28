@@ -26,11 +26,11 @@ a.btn {
         <div class="form-group">
           <label class="col-lg-2 control-label">Penjual</label>
           <div class="col-lg-4">
-              <input type="text" name="id_supplier" class="form-control" placeholder="Penjual">
+          	  <?php echo form_dropdown('id_supplier',$data_penjual,'','class="form-control" placeholder="Penjual"');?>
           </div>
           <label class="col-lg-2 control-label">Penanggung Jawab</label>
           <div class="col-lg-4">
-            <input name = "id_pegawai" class="form-control"  size="16" type="text" value="" placeholder="Penanggung Jawab"/>
+            <?php echo form_dropdown('id_pegawai',$data_pegawai,'','class="form-control" placeholder="Penanggung Jawab"');?>
           </div>
         </div>
         <div class="form-group">

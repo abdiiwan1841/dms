@@ -893,6 +893,9 @@
 	$(document).ready(function() { 
 	   $('.form-update-faktur input').keypress(function() { 
 			$('.buat-faktur').removeAttr('disabled');
+	   });
+	   $('.form-update-faktur select').change(function() { 
+			$('.buat-faktur').removeAttr('disabled');
 	   }); 
 	});
 </script>

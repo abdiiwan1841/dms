@@ -21,12 +21,26 @@ class Purchase extends MY_Controller {
 	}
 
 	public function add(){
+		$this->load->model('purchasemodel');
 		$data['contents'] = 'purchase/add';
 		$data['title'] = $this->title;
 		$this->breadcrumbs = array(
 			'title' => array('Dashboard','Pembelian & Penerimaan Titipan','Pembelian','Add'),
 			'url' => array('/dashboard','/purchase', '/purchase','/add')
 			);
+		$data_penjual = $this->purchasemodel->getDataPenjual()->result_array();
+		$data_pegawai = $this->purchasemodel->getDataPegawai()->result_array();
+		$temp_penjuals = array();
+		foreach($data_penjual as $penjual){
+			$temp_penjuals[$penjual['id']] = $penjual['nama_suplier'];
+		}
+		
+		$temp_pegawai = array();
+		foreach($data_pegawai as $pegawai){
+			$temp_pegawai[$pegawai['id']] = $pegawai['nama'];
+		}
+		$data['data_penjual'] = $temp_penjuals;
+		$data['data_pegawai'] = $temp_pegawai;
 		$data['arr_menu'] = $this->breadcrumbs;
 		$this->load->view('index', $data);
 	}
@@ -42,9 +56,22 @@ class Purchase extends MY_Controller {
 		$data['data_purchase'] = $this->purchasemodel->getPurchaseDetail($no_faktur)->result_array();
 		$data['data_purchase'] = array_shift($data['data_purchase']);
 		$data['data_motors'] = $this->purchasemodel->getPurchaseDetailMotor($no_faktur)->result_array();
+		
 		$data['arr_menu'] = $this->breadcrumbs;
-		//print_r($data['data_purchase']);
-		//echo json_encode($data['data_motors']);
+		
+		$data_penjual = $this->purchasemodel->getDataPenjual()->result_array();
+		$data_pegawai = $this->purchasemodel->getDataPegawai()->result_array();
+		$temp_penjuals = array();
+		foreach($data_penjual as $penjual){
+			$temp_penjuals[$penjual['id']] = $penjual['nama_suplier'];
+		}
+		
+		$temp_pegawai = array();
+		foreach($data_pegawai as $pegawai){
+			$temp_pegawai[$pegawai['id']] = $pegawai['nama'];
+		}
+		$data['data_penjual'] = $temp_penjuals;
+		$data['data_pegawai'] = $temp_pegawai;
 		$this->load->view('index', $data);
 	}
 	
@@ -86,6 +113,21 @@ class Purchase extends MY_Controller {
 		}else{
 			echo '0';	
 		}
+	}
+	
+	public function ubahFaktur(){
+		$this->load->model('purchasemodel');
+		$where['no_faktur'] = $_POST['no_faktur'];
+		unset($_POST['no_faktur']);
+		unset($_POST['total']);
+		$_POST['bayar'] = str_replace('.','',$_POST['bayar']);
+		$result = $this->purchasemodel->ubahFaktur($where, $_POST);
+		if($result){
+			echo '1';
+		}else{
+			echo '0';	
+		}
+		redirect('purchase/detail/'.$where['no_faktur']);
 	}
 
 	public function loadmerk(){

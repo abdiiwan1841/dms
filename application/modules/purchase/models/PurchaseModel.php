@@ -40,5 +40,18 @@ class PurchaseModel extends CI_Model {
 		$this->db->insert('dms_details_pembelian',$data);
 		return $this->db->insert_id();
 	}
+	
+	public function ubahFaktur($where,$data){
+		$this->db->where($where);
+		return $this->db->update('dms_pembelian', $data); 
+	}
+	
+	public function getDataPenjual(){
+		return $this->db->get('dms_supplier');
+	}
+	
+	public function getDataPegawai(){
+		return $this->db->get('dms_pegawai');
+	}
 		
 }

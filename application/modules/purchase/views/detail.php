@@ -9,14 +9,14 @@ a.btn {
 <div class="row">
 <div class="col-lg-12">
   <section class="panel">
-    <?php echo form_open('purchase/simpanFaktur','class="form-horizontal form-update-faktur"')?>
+    <?php echo form_open('purchase/ubahFaktur','class="form-horizontal form-update-faktur"')?>
     <header class="panel-heading"> Detail Pembelian </header>
     <div class="panel-body">
       
         <div class="form-group">
           <label class="col-lg-2 control-label">No. Faktur</label>
           <div class="col-lg-4">
-              <input type="text" name= "no_faktur" class="form-control" placeholder="No. Faktur" value="<?php echo $data_purchase['no_faktur']?>">
+              <input type="text" name= "no_faktur" class="form-control" placeholder="No. Faktur" value="<?php echo $data_purchase['no_faktur']?>" readonly>
           </div>
           <label class="col-lg-2 control-label">Bayar</label>
           <div class="col-lg-4">
@@ -26,11 +26,11 @@ a.btn {
         <div class="form-group">
           <label class="col-lg-2 control-label">Penjual</label>
           <div class="col-lg-4">
-              <input type="text" name="id_supplier" value="<?php echo $data_purchase['nama_suplier']?>" class="form-control" placeholder="Penjual">
+          		<?php echo form_dropdown('id_supplier',$data_penjual,$data_purchase['nama_suplier'],'class="form-control" placeholder="Penjual"');?>
           </div>
           <label class="col-lg-2 control-label">Penanggung Jawab</label>
           <div class="col-lg-4">
-            <input name = "id_pegawai" class="form-control" size="16" type="text" value="<?php echo $data_purchase['nama']?>" placeholder="Penanggung Jawab"/>
+          		<?php echo form_dropdown('id_pegawai',$data_pegawai,$data_purchase['nama'],'class="form-control" placeholder="Penanggung Jawab"');?>
           </div>
         </div>
         <div class="form-group">
