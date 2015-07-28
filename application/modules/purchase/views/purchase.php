@@ -62,6 +62,6 @@ a.btn{
 </div>
 <script>
 	function detail(no_faktur){
-		alert(no_faktur);
+		document.location = '<?php echo base_url('purchase/detail')?>/'+no_faktur;
 	}
 </script>

@@ -32,6 +32,19 @@ class Purchase extends MY_Controller {
 		$data['arr_menu'] = $this->breadcrumbs;
 		$this->load->view('index', $data);
 	}
+	
+	public function detail($no_faktur = ''){
+		$this->load->model('purchasemodel');
+		$data['contents'] = 'purchase/detail';
+		$data['title'] = $this->title;
+		$this->breadcrumbs = array(
+			'title' => array('Dashboard','Pembelian & Penerimaan Titipan','Pembelian','Detail'),
+			'url' => array('/dashboard','/purchase', '/purchase','/detail')
+			);
+		$data['data_purchase'] = $this->purchasemodel->getPurchase($no_faktur)->result_array();
+		$data['arr_menu'] = $this->breadcrumbs;
+		$this->load->view('index', $data);
+	}
 	public function savepurchase(){
 
 	}
