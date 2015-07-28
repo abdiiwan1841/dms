@@ -274,11 +274,11 @@
                     </a>
                     <ul class="sub">
                         <li class="active"><a href="<?php echo base_url();?>purchase">Pembelian</a></li>
-                        <li><a href="<?php echo base_url();?>purchase/deposit">Titipan</a></li>
+                        <li><a href="<?php echo base_url();?>deposit">Titipan</a></li>
 						<li><a href="<?php echo base_url();?>purchase/retur">Retur</a></li>
-						<li><a data-toggle="modal" href="<?php echo base_url();?>report/purchase_reports">Laporan Pembelian</a></li>
-						<li><a data-toggle="modal" href="<?php echo base_url();?>report/deposit_reports">Laporan Konsinyasi</a></li>
-                        <li><a data-toggle="modal" href="<?php echo base_url();?>report/return_reports">Laporan Retur</a></li>
+						<li><a href="<?php echo base_url();?>report/purchase_reports">Laporan Pembelian</a></li>
+						<li><a href="<?php echo base_url();?>report/deposit_reports">Laporan Konsinyasi</a></li>
+                        <li><a  href="<?php echo base_url();?>report/return_reports">Laporan Retur</a></li>
                     </ul>
                 </li>
 				<li class="sub-menu">
