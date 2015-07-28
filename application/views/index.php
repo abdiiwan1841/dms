@@ -276,9 +276,9 @@
                         <li class="active"><a href="<?php echo base_url();?>purchase">Pembelian</a></li>
                         <li><a href="<?php echo base_url();?>purchase/deposit">Titipan</a></li>
 						<li><a href="<?php echo base_url();?>purchase/retur">Retur</a></li>
-						<li><a data-toggle="modal" href="<?php echo base_url();?>purchase/purchase_reports#ModalPurchase">Laporan Pembelian</a></li>
-						<li><a data-toggle="modal" href="<?php echo base_url();?>purchase/consignment_reports#ModalConsignment">Laporan Konsinyasi</a></li>
-                        <li><a data-toggle="modal" href="<?php echo base_url();?>purchase/retur_reports#ModalRetur">Laporan Retur</a></li>
+						<li><a data-toggle="modal" href="<?php echo base_url();?>report/purchase_reports">Laporan Pembelian</a></li>
+						<li><a data-toggle="modal" href="<?php echo base_url();?>report/deposit_reports">Laporan Konsinyasi</a></li>
+                        <li><a data-toggle="modal" href="<?php echo base_url();?>report/return_reports">Laporan Retur</a></li>
                     </ul>
                 </li>
 				<li class="sub-menu">
@@ -626,9 +626,9 @@
                                 <label class="control-label col-md-3">Tanggal</label>
                                 <div class="col-md-8">
                                     <div class="input-group input-large" data-date="13/07/2013" data-date-format="mm/dd/yyyy">
-                                        <input type="text" class="form-control dpd1" name="from">
+                                        <input type="text" class="form-control dpd1 default-date-picker" name="from">
                                         <span class="input-group-addon">To</span>
-                                        <input type="text" class="form-control dpd2" name="to">
+                                        <input type="text" class="form-control dpd2 default-date-picker" name="to">
                                     </div>
                                     <span class="help-block">Masukkan range tanggal yang akan ditampilkan dalam laporan</span>
                                 </div>
