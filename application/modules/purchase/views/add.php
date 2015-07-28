@@ -170,7 +170,7 @@ a.btn {
         <div style="clear:both"></div>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-success" type="submit">Simpan <i class="fa fa-save"></i></button>
+        <button class="btn btn-info" type="submit">Simpan <i class="fa fa-save"></i></button>
         <button data-dismiss="modal" class="btn btn-danger" type="button">Batal <i class="fa fa-times"></i></button>
       </div>
       </form>

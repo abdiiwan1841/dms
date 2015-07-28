@@ -9,44 +9,35 @@ a.btn {
 <div class="row">
 <div class="col-lg-12">
   <section class="panel">
-    <header class="panel-heading"> Tambah Pembelian </header>
+    <?php echo form_open('deposit/simpanFaktur','class="form-horizontal form-add-faktur-deposit"')?>
+    <header class="panel-heading"> Tambah Penitipan </header>
     <div class="panel-body">
-      <form class="form-horizontal bucket-form" method="post">
+      
         <div class="form-group">
           <label class="col-lg-2 control-label">No. Faktur</label>
           <div class="col-lg-4">
-              <input type="text" class="form-control" placeholder="No. Faktur">
+              <input type="text" name= "no_faktur" value="<?php echo $no_faktur?>" class="form-control" placeholder="No. Faktur" readonly required>
           </div>
-          <label class="col-lg-2 control-label">Total</label>
+          <label class="col-lg-2 control-label">Tanggal</label>
           <div class="col-lg-4">
-            <input class="form-control"  size="16" type="text" placeholder="Total" />
+              <input name = "tanggal" type="text" class="form-control form-control-inline input-medium default-date-picker" placeholder="28/07/2015" required>
           </div>
         </div>
         <div class="form-group">
           <label class="col-lg-2 control-label">Penjual</label>
           <div class="col-lg-4">
-              <input type="text" class="form-control" placeholder="Penjual">
-          </div>
-          <label class="col-lg-2 control-label">Bayar</label>
-          <div class="col-lg-4">
-            <input class="form-control"  size="16" type="text" value="" placeholder="Bayar"/>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-lg-2 control-label">Tanggal</label>
-          <div class="col-lg-4">
-              <input type="text" class="form-control form-control-inline input-medium default-date-picker" placeholder="28/07/2015">
+          	  <?php echo form_dropdown('id_supplier',$data_penjual,'','class="form-control" placeholder="Penjual" required');?>
           </div>
           <label class="col-lg-2 control-label">Penanggung Jawab</label>
           <div class="col-lg-4">
-            <input class="form-control"  size="16" type="text" value="" placeholder="Penanggung Jawab"/>
+            <?php echo form_dropdown('id_pegawai',$data_pegawai,'','class="form-control" placeholder="Penanggung Jawab" required');?>
           </div>
         </div>
-      </form>
+     
       <br>
       <hr>
       <div class="adv-table">
-        <table  class=" table table-striped">
+        <table  class=" table table-striped table-motor">
           <thead>
             <tr>
               <th>No. Polisi</th>
@@ -57,8 +48,8 @@ a.btn {
               <th>Umur (bln)</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
+          <tbody class="tbody-motor">
+            <tr class="row-default">
               <td></td>
               <td></td>
               <td></td>
@@ -67,131 +58,122 @@ a.btn {
               <td></td>
             </tr>
           </tbody>
-          <tfoot>
-            <tr>
-              <tr>
-              <th>No. Polisi</th>
-              <th>Merk</th>
-              <th>Model</th>
-              <th>Tahun Pembuatan</th>
-              <th>Harga Beli</th>
-              <th>Umur (bln)</th>
-            </tr>
-            </tr>
-          </tfoot>
         </table>
     </div>
-    <button name="tambah" id="tambah" class="btn btn-primary">Tambah <i class="fa fa-plus"></i></button>
-    <?php echo anchor('purchase/add','Tambah','class="btn btn-info pull-right"');?>
+    <br>
+    <button name="tambah" type="button" id="tambahDeposit" class="btn btn-info pull-right">Tambah Motor</button>
     <div class="clearfix"></div>
+    <br>
+    <div class="form-group">
+          <label class="col-lg-1 control-label">Total</label>
+          <div class="col-lg-11">
+            <input name="total" class="form-control total-harga-motor"  size="16" type="text" placeholder="Total" readonly required/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-1 control-label">Bayar</label>
+          <div class="col-lg-11">
+            <input name = "bayar" class="form-control"  size="16" type="text" value="" placeholder="Bayar" required/>
+          </div>
+        </div>
+    <div class="id_motors_area">
+    	
+    </div>
+    <br>
+    <button type="submit" class="btn btn-info pull-right buat-faktur-deposit" disabled>Buat Faktur</button>
+    <div class="clearfix"></div>
+     </form>
   </section>
 </div>
-<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="ModalAdd" class="modal fade">
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="ModalAddDeposit" class="modal fade">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">Detail</h4>
+        <h4 class="modal-title">Tambah Motor</h4>
       </div>
+      <?php echo form_open('deposit/simpanMotor','class="form-horizontal form-add-motor-deposit"')?>
       <div class="modal-body">
-      <form class="form-horizontal bucket-form" method="post">
-        <div class="form-group">
-          <label class="col-lg-2 control-label">No</label>
-          <div class="col-lg-4">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="No. Urut" disabled>
-            </div>
-          </div>
+      <div class="form-group">
+          
           <label class="col-lg-2 control-label">No. Polisi</label>
           <div class="col-lg-4">
-            <input type="text" class="form-control" disabled>
+            <input type="text" name="no_polisi" class="form-control" required placeholder="No. Polisi">
           </div>
-        </div>
-        <div class="form-group">
           <label class="col-lg-2 control-label">Merk</label>
           <div class="col-lg-4">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Merk" id="automerk">
-              <span class="input-group-btn">
-              <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
-              </span> </div>
+            <input type="text" name="merk" class="form-control" placeholder="Merk" id="automerk" required>
           </div>
+        </div>
+        <div class="form-group">
           <label class="col-lg-2 control-label">Model</label>
           <div class="col-lg-4">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Model" id="automodel">
-              <span class="input-group-btn">
-              <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
-              </span> </div>
+            <input type="text" name= "model" class="form-control" placeholder="Model" id="automodel" required>
           </div>
-        </div>
-        <div class="form-group">
           <label class="col-lg-2 control-label">Isi Silinder</label>
           <div class="col-lg-4">
-            <input type="text" class="form-control" disabled>
-          </div>
-          <label class="col-lg-2 control-label">Th. Pembuatan</label>
-          <div class="col-lg-4">
-            <input type="text" class="form-control" disabled>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-lg-2 control-label">Warna</label>
-          <div class="col-lg-4">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Warna" id="autowarna">
-              <span class="input-group-btn">
-              <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
-              </span> </div>
-          </div>
-          <label class="col-lg-2 control-label">Nama BPKB</label>
-          <div class="col-lg-4">
-            <input type="text" class="form-control" disabled>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-lg-2 control-label">Alamat BPKB</label>
-          <div class="col-lg-4">
-            <input type="text" class="form-control" disabled>
-          </div>
-          <label class="col-lg-2 control-label">No. Rangka</label>
-          <div class="col-lg-4">
-            <input type="text" class="form-control" disabled>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-lg-2 control-label">No. Mesin</label>
-          <div class="col-lg-4">
-            <input type="text" class="form-control" disabled>
-          </div>
-          <label class="col-lg-2 control-label">No. BPKB</label>
-          <div class="col-lg-4">
-            <input type="text" class="form-control" disabled>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-2 control-label">Harga Beli</label>
-          <div class="col-lg-4">
-            <input type="text" placeholder="" data-mask="999,999,999.99" class="form-control" data-toggle="tooltip" data-placement="bottom" title="Harga Beli dalam angka">
-          </div>
-          <label class="col-lg-2 control-label">Umur (Bln)</label>
-          <div class="col-lg-4">
-            <input type="text" class="form-control" disabled>
+            <input type="text" name = "isi_silinder" class="form-control" placeholder="Isi Silinder" required>
           </div>
         </div>
         <div class="form-group">
           <label class="col-lg-2 control-label">Akhir STNK</label>
           <div class="col-lg-4">
-            <input class="form-control form-control-inline input-medium default-date-picker"  size="16" type="text" value="" />
+            <input name = "tanggal_akhir_stnk" class="form-control form-control-inline input-medium default-date-picker"  size="16" type="text" value="" placeholder="Akhir STNK" required/>
+          </div>
+          <label class="col-lg-2 control-label">Th. Pembuatan</label>
+          <div class="col-lg-4">
+            <input type="text" name = "tahun_pembuatan" class="form-control" placeholder="Tahun Pembuatan" required>
           </div>
         </div>
-        </form>
+        <div class="form-group">
+          <label class="col-lg-2 control-label">Warna</label>
+          <div class="col-lg-4">
+            <input type="text" name "warna" class="form-control" placeholder="Warna" id="autowarna" required>
+              
+          </div>
+          <label class="col-lg-2 control-label">Nama BPKB</label>
+          <div class="col-lg-4">
+            <input type="text" name = "nama_bpkb"class="form-control" placeholder="Nama BPKB" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-2 control-label">Alamat BPKB</label>
+          <div class="col-lg-4">
+            <input type="text" name = "alamat_bpkb" class="form-control" placeholder="Alamat BPKB" required>
+          </div>
+          <label class="col-lg-2 control-label">No. Rangka</label>
+          <div class="col-lg-4">
+            <input type="text" name = "no_rangka" class="form-control" placeholder="No. Rangka" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-lg-2 control-label">No. Mesin</label>
+          <div class="col-lg-4">
+            <input type="text" name = "no_mesin" class="form-control" placeholder="No. Mesin" required>
+          </div>
+          <label class="col-lg-2 control-label">No. BPKB</label>
+          <div class="col-lg-4">
+            <input type="text" name = "no_bpkb" class="form-control" placeholder="No. BPKB" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label">Harga Beli</label>
+          <div class="col-lg-4">
+            <input type="text" name = "harga_beli" placeholder="" data-mask="999,999,999.99" class="form-control" data-toggle="tooltip" data-placement="bottom" title="Harga Beli dalam angka" placeholder="Harga Beli" required>
+          </div>
+          <label class="col-lg-2 control-label">Umur (Bln)</label>
+          <div class="col-lg-4">
+            <input type="text" name = "umur" class="form-control" placeholder="Umur (Bln)" required>
+          </div>
+        </div>
+        
         <div style="clear:both"></div>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-success" type="button">Simpan <i class="fa fa-save"></i></button>
+        <button class="btn btn-info" type="submit">Simpan <i class="fa fa-save"></i></button>
         <button data-dismiss="modal" class="btn btn-danger" type="button">Batal <i class="fa fa-times"></i></button>
       </div>
+      </form>
     </div>
   </div>
 </div>
@@ -206,8 +188,3 @@ a.btn {
     </div>
   </div>
 </div>
-<script>
-	function detail(no_faktur){
-		alert(no_faktur);
-	}
-</script>

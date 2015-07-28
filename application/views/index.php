@@ -796,6 +796,9 @@
         $("#tambah").click(function(){
             $("#ModalAdd").modal();
         });
+		$("#tambahDeposit").click(function(){
+            $("#ModalAddDeposit").modal();
+        });
 
         $("#automerk").autocomplete({
             source: ["HONDA","YAMAHA","SUZUKI","PULSAR"],
@@ -899,6 +902,68 @@
 			$('.ubah-faktur').removeAttr('disabled');
 	   });
 	   $('.form-update-faktur select').change(function() { 
+			$('.ubah-faktur').removeAttr('disabled');
+	   }); 
+	});
+	
+	// penitipan
+	$('.form-add-motor-deposit').submit(function(e) {
+        e.preventDefault();
+		var data_motor = $(this).serialize();
+		$.ajax({
+			url:$(this).attr('action'),
+			type:'POST',
+			data:data_motor,
+			success: function(result){
+				var append = "<tr>";
+				var id_motor_append = '';
+				var total = 0;
+				var value = $.parseJSON(result);
+				//$.each(result, function(index, value){
+					append += "<td>"+value.no_pol+"</td>";
+					append += "<td>"+value.merk+"</td>";
+					append += "<td>"+value.model+"</td>";
+					append += "<td>"+value.th_pembuatan+"</td>";
+					append += "<td class='harga_beli'>"+value.harga+"</td>";
+					append += "<td>"+value.umur+"</td>";
+					id_motor_append += "<input type='hidden' value='"+value.id_motor+"' name='id_motors[]'>"; 
+				//})
+				append += "</tr>";
+				
+				
+				$('.row-default').remove();
+				$('.tbody-motor').append(append);
+				$('.harga_beli').each(function() {
+					total += parseInt($(this).html());  
+				 });
+				$('.total-harga-motor').val(total);
+				$('.id_motors_area').append(id_motor_append);
+				$('#ModalAddDeposit').modal('hide');
+			}
+		});
+		$('.form-add-motor-deposit')[0].reset();
+		$('.buat-faktur-deposit').removeAttr('disabled');
+    });
+	$('.form-add-faktur-deposit').submit(function(e) {
+        e.preventDefault();
+		var data_motor = $(this).serialize();
+		console.log(data_motor);
+		$.ajax({
+			url:$(this).attr('action'),
+			type:'POST',
+			data:data_motor,
+			success: function(result){
+				//document.location.reload();
+			}
+		});
+		$('.form-add-faktur-deposit')[0].reset();
+    });
+	
+	$(document).ready(function() { 
+	   $('.form-update-faktur-deposit input').keypress(function() { 
+			$('.ubah-faktur').removeAttr('disabled');
+	   });
+	   $('.form-update-faktur-deposit select').change(function() { 
 			$('.ubah-faktur').removeAttr('disabled');
 	   }); 
 	});

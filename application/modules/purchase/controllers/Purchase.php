@@ -115,7 +115,7 @@ class Purchase extends MY_Controller {
 		foreach($data_detail_pembelian as $detail_pembelian){
 			$result_pembelian = $this->purchasemodel->addDetailPembelian($detail_pembelian);
 		}
-		if($result){
+		if($result_pembelian){
 			echo '1';
 		}else{
 			echo '0';	
@@ -216,6 +216,11 @@ class Purchase extends MY_Controller {
 	private function _generate_no_faktur(){
 		$this->load->model('purchasemodel');
 		$data_purchase = $this->purchasemodel->getPurchaseLastData()->row();
+		if($data_purchase){
+			$lastID = ($data_purchase->id+1);
+		}else{
+			$lastID = 1;
+		}
 		$lastID = ($data_purchase->id+1);
 		$prefix = 'P';
 		$no_faktur = $prefix.$lastID;

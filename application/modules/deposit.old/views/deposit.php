@@ -9,7 +9,7 @@ a.btn{
 <div class="row">
 <div class="col-lg-12">
   <section class="panel">
-    <header class="panel-heading"> Data Penitipan </header>
+    <header class="panel-heading"> Data Titipan </header>
     <div class="panel-body">
       <div class="adv-table">
         <table  class="display table table-hover " id="dynamic-table">
@@ -26,16 +26,16 @@ a.btn{
             </tr>
           </thead>
           <tbody>
-            <?php foreach($data_deposit as $deposit){ ?>
-            <tr class="gradeA" onClick="detail('<?php echo $deposit['no_faktur']?>')">
-              <td><?php echo $deposit['no_faktur']?></td>
-              <td><?php echo $deposit['tanggal']?></td>
-              <td><?php echo $deposit['nama_supplier']?></td>
-              <td><?php echo $deposit['jumlah_unit']?></td>
-              <td><?php echo $deposit['total']?></td>
-              <td><?php echo $deposit['bayar']?></td>
-              <td><?php echo $deposit['sisa']?></td>
-              <td><?php echo $deposit['nama_pegawai']?></td>
+            <?php foreach($data_purchase as $purchase){ ?>
+            <tr class="gradeA" onClick="detail('<?php echo $purchase['no_faktur']?>')">
+              <td><?php echo $purchase['no_faktur']?></td>
+              <td><?php echo $purchase['tanggal']?></td>
+              <td><?php echo $purchase['nama_supplier']?></td>
+              <td><?php echo $purchase['jumlah_unit']?></td>
+              <td><?php echo $purchase['total']?></td>
+              <td><?php echo $purchase['bayar']?></td>
+              <td><?php echo $purchase['sisa']?></td>
+              <td><?php echo $purchase['nama_pegawai']?></td>
             </tr>
             <?php }?>
           </tbody>
