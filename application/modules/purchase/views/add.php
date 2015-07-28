@@ -15,11 +15,7 @@ a.btn {
         <div class="form-group">
           <label class="col-lg-2 control-label">No. Faktur</label>
           <div class="col-lg-4">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="No. Faktur" disabled>
-              <span class="input-group-btn">
-              <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
-              </span> </div>
+              <input type="text" class="form-control" placeholder="No. Faktur">
           </div>
           <label class="col-lg-2 control-label">Tanggal</label>
           <div class="col-lg-4">
@@ -29,11 +25,7 @@ a.btn {
         <div class="form-group">
           <label class="col-lg-2 control-label">No. Faktur</label>
           <div class="col-lg-4">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="No. Faktur" disabled>
-              <span class="input-group-btn">
-              <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
-              </span> </div>
+              <input type="text" class="form-control" placeholder="No. Faktur">
           </div>
           <label class="col-lg-2 control-label">Tanggal</label>
           <div class="col-lg-4">
@@ -41,19 +33,13 @@ a.btn {
           </div>
         </div>
         <div class="form-group">
-          <label class="col-lg-2 control-label">Penjual</label>
+          <label class="col-lg-2 control-label">No. Faktur</label>
           <div class="col-lg-4">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Penjual">
-              <span class="input-group-btn">
-              <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
-              </span> </div>
+              <input type="text" class="form-control" placeholder="No. Faktur">
           </div>
-          <label class="col-lg-2 control-label">Surat Jalan</label>
+          <label class="col-lg-2 control-label">Tanggal</label>
           <div class="col-lg-4">
-            <div class="input-group">
-              <input type="text" class="form-control" disabled>
-            </div>
+            <input class="form-control form-control-inline input-medium default-date-picker"  size="16" type="text" value="" />
           </div>
         </div>
         <div class="form-group">
