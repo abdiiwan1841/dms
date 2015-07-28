@@ -1,8 +1,9 @@
 <div class="row">
     <div class="col-lg-12">
         <section class="panel">
+
             <header class="panel-heading">
-                Dynamic Table
+                Daftar Pembelian Motor
                 <span class="tools pull-right">
                     <a href="javascript:;" class="fa fa-chevron-down"></a>
                     <a href="javascript:;" class="fa fa-cog"></a>
@@ -10,6 +11,32 @@
                 </span>
             </header>
             <div class="panel-body">
+               
+                    <div class="col-lg-12 bg-info">
+                        <div class="col-lg-4"></div>
+                        <div class="col-lg-4">
+                            <div class="input-group input-sm" data-date="13/07/2013" data-date-format="yyyy-mm-dd">
+                                <input  type="text" class="form-control dpd1 default-date-picker" id="from" name="from" placeholder="tanggal awal">
+                                <span class="input-group-addon">sampai</span>
+                                <input type="text" class="form-control dpd2 default-date-picker" id="to" name="to" placeholder="tanggal akhir">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <button class="btn btn-warning" type="button" style="margin-top: 5px;">
+                                 <a href="#" onclick="cetak()">
+                                    <b>Cetak</b>
+                                </a> <i class="fa fa-print"></i>
+                            </button> 
+                            
+                            
+                            <button class="btn btn-primary" type="button"  style="margin-top: 5px;">
+                                <a href="#" onclick="lihat()">
+                                    <b>Lihat</b>
+                                </a> <i class="fa fa-book"></i>
+                            </button> 
+                        </div>
+                    </div>
+                
                 <div class="adv-table">
                     <table  class="display table table-hover table-bordered table-striped" id="dynamic-table">
                         <thead>
@@ -27,7 +54,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $a = 1;
+                            <?php
+                            $a = 1;
                             foreach ($data_purchase as $purchase) {
                                 ?>
                                 <tr class="gradeA" onClick="detail('<?php echo $purchase['no_faktur'] ?>')">
@@ -41,7 +69,8 @@
                                     <td><?php echo $purchase['tahun_pembuatan'] ?></td>
                                     <td>Rp.<?php echo $purchase['harga_beli']; ?></td>
                                 </tr>
-                                <?php $a++;
+                                <?php
+                                $a++;
                             }
                             ?>
 
@@ -53,26 +82,8 @@
         </section>
 
 
-        <label class="control-label col-md-3">Tanggal</label>
-        <form  role="form" action="<?php echo base_url(); ?>report/print_purchase_reports" method="post">
-            <div class="col-md-8">
+        <!--        <label class="control-label col-md-3">Tanggal</label>-->
 
-                <div class="input-group input-large" data-date="13/07/2013" data-date-format="mm/dd/yyyy">
-                    <input type="text" class="form-control dpd1 default-date-picker" name="from">
-                    <span class="input-group-addon">To</span>
-                    <input type="text" class="form-control dpd2 default-date-picker" name="to">
-
-                </div>
-
-                <button class="btn btn-success" type="submit">Submit<i class="fa fa-print"></i></button>
-                <span class="help-block">Masukkan range tanggal yang akan ditampilkan dalam laporan</span>
-
-            </div>
-        </form>
-        <div class="modal-footer">
-            <button class="btn btn-success" type="button"><a href="<?php echo base_url(); ?>report/print_purchase_reports">Cetak</a><i class="fa fa-print"></i></button>
-            <button data-dismiss="modal" class="btn btn-default" type="button">Batal <i class="fa fa-times"></i></button>
-        </div>
     </div>
 
 </div>
@@ -200,4 +211,25 @@
     function detail(no_faktur) {
         alert(no_faktur);
     }
+    
+    
+    
+    function lihat(){
+        var from = document.getElementById("from").value;
+        var to = document.getElementById("to").value;
+      
+      document.location.href="<?php echo base_url(); ?>report/view_purchase_reports/"+from+"/"+to;
+    }
+    
+     function cetak(){
+        var from = document.getElementById("from").value;
+        var to = document.getElementById("to").value;
+      
+      document.location.href="<?php echo base_url(); ?>report/print_purchase_reports/"+from+"/"+to;
+    }
+    
+    $('.default-date-picker').datepicker({
+    dateFormat: 'yyyy-mm-dd'
+});
+    
 </script>

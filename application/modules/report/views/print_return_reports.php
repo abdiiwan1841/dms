@@ -18,7 +18,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <?php foreach($data_purchase as $purchase){ ?>
+                    <?php foreach($data_return as $purchase){ ?>
                     <tr class="gradeA" onClick="detail('<?php echo $purchase['no_faktur']?>')">
                         <td><?php echo $purchase['no_faktur']?></td>
                         <td><?php echo $purchase['tanggal']?></td>
